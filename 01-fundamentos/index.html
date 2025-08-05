@@ -14,74 +14,54 @@
 </head>
 
 <body>
-  <div id="root">
-    <script type="text/babel">
-      const Produtos = () => {
-        const produto1 = 'Camisa';
-        const produto2 = 'Bermuda';
-
-        function handleClick(event) {
-          console.log(`Usuário comprou: ${event.target.textContent}`);
-        }
-
-        return (
-          <div>
-            <button onClick={handleClick}>{produto1} - R$ {Math.floor(Math.random() * 100)}</button>
-            <button onClick={handleClick}>{produto2} - R$ {Math.floor(Math.random() * 100)}</button>
-          </div>
-        )
-      };
-
-      const MainNav = () => {
-        return (
-          <ul>
-            <li><a href="#">Link 1</a></li>
-            <li><a href="#">Link 2</a></li>
-            <li><a href="#">Link 3</a></li>
-            <li><a href="#">Link 4</a></li>
-            <li><a href="#">Link 5</a></li>
-          </ul>
-        )
-      };
-
-      const Button = () => {
-        return (
-          <button>Comprar</button>
-        )
-      };
-
-      const Comprar = () => {
-        const [count, setCount] = React.useState(0);
-
-         function handleClick(event) {
-          setCount(count + 1)
-        }
-
-        return (
-          <div>
-            <button onClick={handleClick}>Comprar: {count}</button>
-            <button>Total: {count}</button>
-            <button>Preço: {count * 2}</button>
-          </div>
-        )
-      }
-
-      const App = () => {
-        return (
-          <div>
-            <h1>Teste</h1>
-            <MainNav />
-            <Produtos />
-            <Comprar />
-          </div>
-        )
-      };
-
-      const container = document.getElementById('root');
-      const root = ReactDOM.createRoot(container);
-      root.render(<App />)
-    </script>
+  <div id="app-javascript">
+    <p>Total: <span id="total"></span></p>
+    <p>Preço: R$<span id="preco"></span></p>
+    <button id="button">Comprar</button>
   </div>
+
+  <script type="application/javascript">
+    const total = document.getElementById('total');
+    const preco = document.getElementById('preco');
+    const button = document.getElementById('button');
+
+    let contador = 1;
+
+    function atualizarValores(contador) {
+      total.textContent = contador;
+      preco.textContent = contador * 2;
+    }
+
+    atualizarValores(contador);
+
+    function handleClick() {
+      contador++;
+      atualizarValores(contador)
+    }
+
+
+    button.addEventListener('click', handleClick);
+  </script>
+
+  <div id="app-react"></div>
+
+  <script type="text/babel">
+    const Comprar = () => {
+      const [contador, setContador] = React.useState(1);
+
+      return (
+        <div>
+          <p>Total: {contador}</p>
+          <p>Preço: R$ {contador * 250}</p>
+          <button onClick={() => setContador(contador + 1)}>Comprar</button>
+        </div>
+      )
+    }
+
+    const container = document.getElementById('app-react');
+    const root = ReactDOM.createRoot(container);
+    root.render(<Comprar />)
+  </script>
 
 </body>
 
