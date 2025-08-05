@@ -1,14 +1,7 @@
-import React from 'react';
+import { React } from 'react';
 
 const App = () => {
-  return (
-    <h1>
-      <a href="https://github.com/matheushnt" target="_blank">
-        Clique aqui{' '}
-      </a>
-      para acessar meu GitHub
-    </h1>
-  );
+  return <div>App React</div>;
 };
 
 export default App;
