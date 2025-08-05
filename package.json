@@ -1,0 +1,26 @@
+{
+  "name": "react-playground",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "esbuild --bundle src/main.jsx --outfile=main.js --servedir=./ --watch",
+    "build": "esbuild --bundle src/main.jsx --outfile=main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matheushnt/react-playground.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matheushnt/react-playground/issues"
+  },
+  "homepage": "https://github.com/matheushnt/react-playground#readme",
+  "dependencies": {
+    "esbuild": "^0.25.8",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  }
+}
