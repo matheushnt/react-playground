@@ -1,11 +1,25 @@
-import { React } from 'react';
+import React from 'react';
+import Header from './Header';
+import Footer from './Footer';
+import Form from './form/Form';
+
+const Teste = () => {
+  const active = false;
+
+  if (active) {
+    return 'Está Ativo';
+  } else {
+    return null;
+  }
+};
 
 const App = () => {
-  window.addEventListener('scroll', ({ target }) => console.log(target));
-
   return (
-    <div style={{ height: '100vh' }}>
-      <button onClick={({ target }) => alert(target.textContent)}>Clique</button>
+    <div>
+      <Teste />
+      <Header />
+      <Form />
+      <Footer />
     </div>
   );
 };
