@@ -1,24 +1,15 @@
-import React from 'react';
-import Home from './Home';
-import Produtos from './Produtos';
-import Menu from './Menu';
+import React, { useState } from 'react';
+import ButtonModal from './ButtonModal';
+import Modal from './Modal';
 
 const App = () => {
-  const { pathname } = window.location;
-
-  let Component;
-
-  if (pathname === '/produtos') {
-    Component = Produtos;
-  } else {
-    Component = Home;
-  }
+  const [modal, setModal] = useState(false);
 
   return (
-    <section>
-      <Menu />
-      <Component />
-    </section>
+    <div>
+      <Modal modal={modal} setModal={setModal} />
+      <ButtonModal setModal={setModal} />
+    </div>
   );
 };
 
