@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
-import ButtonModal from './ButtonModal';
-import Modal from './Modal';
 
 const App = () => {
-  const [modal, setModal] = useState(false);
+  const [contar, setContar] = useState(1);
+  const [itens, SetItens] = useState(['Item 1']);
+
+  function handleClick() {
+    setContar(contar + 1);
+    SetItens([...itens, `Item ${contar + 1}`]);
+  }
 
   return (
     <div>
-      <Modal modal={modal} setModal={setModal} />
-      <ButtonModal setModal={setModal} />
+      <ul>
+        {itens.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+      <button onClick={handleClick}>{contar}</button>
     </div>
   );
 };
