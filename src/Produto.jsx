@@ -5,18 +5,22 @@ const Produto = ({ produto }) => {
 
   useEffect(() => {
     if (produto !== null) {
-      fetch(`https://ranekapi.origamid.dev/json/api/produto/${produto}`)
-        .then((res) => res.json())
-        .then((json) => setDados(json));
+      async function fetchProduto(produto) {
+        const response = await fetch(`https://ranekapi.origamid.dev/json/api/produto/${produto}`);
+        const json = await response.json();
+        setDados(json);
+      }
+
+      fetchProduto(produto);
     }
   }, [produto]);
 
-  if (dados === null) return null;
+  if (!dados) return null;
 
   return (
     <div>
-      <h1>{dados.nome}</h1>
-      <p>R$ {dados.preco}</p>
+      <h2>{dados.nome}</h2>
+      <h2>R$ {dados.preco}</h2>
     </div>
   );
 };
