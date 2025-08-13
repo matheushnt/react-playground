@@ -1,22 +1,40 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useState } from 'react';
 
-function operacaoLenta() {
-  let c;
-  for (let i = 0; i < 100000000; i++) {
-    c = i + i / 10;
-  }
+const set1 = new Set();
+const set2 = new Set();
 
-  return c;
-}
+const Produto = () => {
+  const func1 = () => {
+    console.log('Teste');
+  };
+
+  const func2 = useCallback(() => {
+    console.log('Teste');
+  }, []);
+
+  set1.add(func1);
+  set2.add(func2);
+
+  console.log('Set 1: ', set1);
+  console.log('Set 2: ', set2);
+
+  return (
+    <div>
+      <p onClick={func1}>Produto 1</p>
+      <p onClick={func2}>Produto 2</p>
+    </div>
+  );
+};
 
 const App = () => {
-  const t0 = performance.now();
+  const [count, setCount] = useState(0);
 
-  const valor = useMemo(() => operacaoLenta(), []);
-
-  console.log(performance.now() - t0);
-
-  return <p>{valor}</p>;
+  return (
+    <div>
+      <Produto />
+      <button onClick={() => setCount(count + 1)}>{count}</button>
+    </div>
+  );
 };
 
 export default App;
