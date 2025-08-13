@@ -1,26 +1,22 @@
-import React, { useState, useRef } from 'react';
+import React, { useMemo } from 'react';
 
-const App = () => {
-  const [carrinho, setCarrinho] = useState(0);
-  const [notificacao, setNotificacao] = useState(null);
-  const timeoutRef = useRef();
-
-  function handleClick() {
-    setCarrinho((prevState) => prevState + 1);
-    setNotificacao('Item Adicionado ao Carrinho');
-
-    clearTimeout(timeoutRef.current);
-    timeoutRef.current = setTimeout(() => {
-      setNotificacao(null);
-    }, 2000);
+function operacaoLenta() {
+  let c;
+  for (let i = 0; i < 100000000; i++) {
+    c = i + i / 10;
   }
 
-  return (
-    <>
-      <p>{notificacao}</p>
-      <button onClick={handleClick}>Adicionar Carrinho {carrinho}</button>
-    </>
-  );
+  return c;
+}
+
+const App = () => {
+  const t0 = performance.now();
+
+  const valor = useMemo(() => operacaoLenta(), []);
+
+  console.log(performance.now() - t0);
+
+  return <p>{valor}</p>;
 };
 
 export default App;
