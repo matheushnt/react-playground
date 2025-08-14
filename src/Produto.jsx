@@ -4,11 +4,16 @@ import { GlobalContext } from './GlobalContext';
 const Produto = () => {
   const global = useContext(GlobalContext);
 
+  if (global.produtos === null) return null;
+
   return (
     <div>
-      <div>Contador: {global.count}</div>
-      <button onClick={() => global.adicionarUm()}>Clique</button>
-      <button onClick={() => global.adicionarDois()}>Clique</button>
+      <div>Produtos:</div>
+      <ul>
+        {global.produtos.map((produto) => (
+          <li key={produto.id}>{produto.nome}</li>
+        ))}
+      </ul>
     </div>
   );
 };
